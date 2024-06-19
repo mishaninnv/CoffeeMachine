@@ -31,8 +31,9 @@ namespace CoffeeMachine
 
             InitializeDb();
             InitializeComponent();
-
             UpdateLinks();
+            money.Text = "0";
+            changeMoney.Text = "0";
         }
 
         /// <summary>Показать панель администратора.</summary>
@@ -61,7 +62,7 @@ namespace CoffeeMachine
                 var existUnit = _db.Units.FirstOrDefault(x => x.Name == unit.ToString());
                 if (existUnit == null && unit != null)
                 {
-                    _db.Units.Add(new UnitModel() { Name = unit.ToString() });
+                    _db.Units.Add(new UnitModel() { Name = unit.ToString(), ConvertValue = 0 });
                 }
             }
 
@@ -157,6 +158,11 @@ namespace CoffeeMachine
             var error = string.Empty;
 
             var choosedCoffee = (CoffeeModel)selectedCoffee.SelectedItem;
+            if (choosedCoffee == null)
+            {
+                description.Text = "Не выбран напиток.";
+                return;
+            }
             var coffee = _db.Coffee.FirstOrDefault(x => x.Name == choosedCoffee.Name);
             var choosedPaymentType = (PaymentTypeModel)selectedPaymentType.SelectedItem;
             var paymentType = _db.PaymentTypes.FirstOrDefault(x => x.Name == choosedPaymentType.Name);
