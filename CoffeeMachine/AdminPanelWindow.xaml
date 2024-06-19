@@ -1,0 +1,138 @@
+﻿<Window x:Class="CoffeeMachine.AdminPanelWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CoffeeMachine"
+        mc:Ignorable="d"
+        Title="Панель администратора" MaxHeight="750" MaxWidth="900" MinHeight="750" MinWidth="900">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45*"/>
+            <RowDefinition Height="55*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="6*"/>
+        </Grid.ColumnDefinitions>
+        <ListView x:Name="listView" Grid.Column="0" Grid.Row="0" Margin="5">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Название кофе"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Price}" Header="Цена"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding CoffeeAmount}" Header="Кол-во кофе"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding MilkAmount}" Header="Кол-во молока"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding WaterAmount}" Header="Кол-во воды"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Grid Grid.Column="1" Grid.Row="0" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border BorderBrush="Black" BorderThickness="1" Grid.ColumnSpan="2" Margin="-5"/>
+
+            <TextBlock Text="Новый напиток" HorizontalAlignment="Left" Margin="167,0,0,246" Grid.ColumnSpan="2"/>
+
+            <TextBlock TextWrapping="Wrap" Text="Название кофе:" Grid.Column="0" Height="23" Margin="0,10,0,214"/>
+            <TextBox x:Name="name" Height="23" TextWrapping="Wrap" Width="auto" Grid.Column="1" Margin="0,10,0,214"/>
+
+            <TextBlock TextWrapping="Wrap" Text="Цена:" Grid.Column="0" Height="23" Margin="0,38,0,186"/>
+            <TextBox x:Name="price" Height="23" TextWrapping="Wrap" Width="auto" Grid.Column="1" Margin="0,38,0,186"/>
+
+            <TextBlock TextWrapping="Wrap" Text="Кол-во кофе:" Grid.Column="0" Height="23" Margin="0,66,0,158"/>
+            <TextBox x:Name="coffeeAmount" Height="23" TextWrapping="Wrap" Width="auto" Grid.Column="1" Margin="0,66,0,158"/>
+
+            <TextBlock TextWrapping="Wrap" Text="Кол-во молока:" Grid.Column="0" Height="23" Margin="0,94,0,130"/>
+            <TextBox x:Name="milkAmount" Height="23" TextWrapping="Wrap" Width="auto" Grid.Column="1" Margin="0,94,0,130"/>
+
+            <TextBlock TextWrapping="Wrap" Text="Кол-во воды:" Grid.Column="0" Height="23" Margin="0,122,0,102"/>
+            <TextBox x:Name="waterAmount" Height="23" TextWrapping="Wrap" Width="auto" Grid.Column="1" Margin="0,122,0,102"/>
+
+            <Button Content="Добавить" Width="75" Height="23" Click="Add_Click" HorizontalAlignment="Left" Margin="0,158,0,66" Grid.Column="0"/>
+            <Button Content="Удалить" Click="Delete_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,158,0,66" Grid.Column="0" RenderTransformOrigin="0.4,1.291"/>
+
+            <TextBlock x:Name="description" TextWrapping="Wrap" Text="" Grid.ColumnSpan="2" Margin="0,218,0,0"/>
+        </Grid>
+
+        <Grid Grid.Column="1" Grid.Row="1" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <Border BorderBrush="Black" BorderThickness="1" Grid.ColumnSpan="3" Grid.RowSpan="2" Margin="-5"/>
+
+            <TextBlock Text="Данные по ресурсам" Grid.ColumnSpan="3" HorizontalAlignment="Center"/>
+
+            <StackPanel Grid.Column="0" Margin="0,25,0,0">
+                <TextBlock Text="Ресурс" Height="23" />
+                <TextBlock Text="Кол-во стаканов, шт: " Height="23"/>
+                <TextBlock Text="Общий объем стакано, шт: " Height="23"/>
+                <TextBlock Text="Кол-во кофе, г: " Height="23"/>
+                <TextBlock Text="Общий объем кофе, кг: " Height="23"/>
+                <TextBlock Text="Кол-во воды, мл: " Height="23"/>
+                <TextBlock Text="Общий объем воды, л: " Height="23"/>
+                <TextBlock Text="Кол-во сахара, г: " Height="23"/>
+                <TextBlock Text="Общий объем сахара, кг: " Height="23"/>
+                <TextBlock Text="Кол-во молока, мл: " Height="23"/>
+                <TextBlock Text="Общий объем молока, л: " Height="23"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Margin="0,25,0,0">
+                <TextBlock Text="Количество" Height="23"/>
+                <TextBlock x:Name="cupsCount" Height="23"/>
+                <TextBlock x:Name="cupsCountMax" Height="23"/>
+                <TextBlock x:Name="coffeeCount" Height="23"/>
+                <TextBlock x:Name="coffeeCountMax" Height="23"/>
+                <TextBlock x:Name="waterCount" Height="23"/>
+                <TextBlock x:Name="waterCountMax" Height="23"/>
+                <TextBlock x:Name="sugarCount" Height="23"/>
+                <TextBlock x:Name="sugarCountMax" Height="23"/>
+                <TextBlock x:Name="milkCount" Height="23"/>
+                <TextBlock x:Name="milkCountMax" Height="23"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" Margin="0,25,0,0">
+                <TextBlock Text="Добавляемое кол-во" Height="23"/>
+                <TextBox x:Name="cupsCountAdd" Height="23"/>
+                <TextBox x:Name="cupsCountMaxAdd" Height="23"/>
+                <TextBox x:Name="coffeeCountAdd" Height="23"/>
+                <TextBox x:Name="coffeeCountMaxAdd" Height="23"/>
+                <TextBox x:Name="waterCountAdd" Height="23"/>
+                <TextBox x:Name="waterCountMaxAdd" Height="23"/>
+                <TextBox x:Name="sugarCountAdd" Height="23"/>
+                <TextBox x:Name="sugarCountMaxAdd" Height="23"/>
+                <TextBox x:Name="milkCountAdd" Height="23"/>
+                <TextBox x:Name="milkCountMaxAdd" Height="23"/>
+                <Button Content="Добавить" Name="ResourceAdd" Click="ResourceAdd_Click"/>
+            </StackPanel>
+            <TextBlock x:Name="resourceDescription" Grid.ColumnSpan="3" Grid.Row="1" Margin="3"/>
+        </Grid>
+
+        <Grid Grid.Column="0" Grid.Row="1" Margin="10">
+            <Border BorderBrush="Black" BorderThickness="1" Grid.ColumnSpan="2" Margin="-5"/>
+
+            <StackPanel Margin="10">
+                <TextBlock Text="Приведение единиц"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="1 единица молока, мл - " Width="130"/>
+                    <TextBox x:Name="milkUnit" Width="20"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="1 единица сахара, г - " Width="130"/>
+                    <TextBox x:Name="sugarUnit" Width="20"/>
+                </StackPanel>
+                <Button Content="Сохранить" Name="UnitUpdate" Click="UnitUpdate_Click" Width="160" Margin="10"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

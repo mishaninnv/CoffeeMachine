@@ -1,0 +1,60 @@
+﻿<Window x:Class="CoffeeMachine.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CoffeeMachine"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="400" Width="400">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="7*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Border BorderBrush="Black" BorderThickness="1" Grid.Column="0" Grid.Row="0" Margin="5"/>
+        <Border BorderBrush="Black" BorderThickness="1" Grid.Column="0" Grid.Row="1" Margin="5"/>
+        <Border BorderBrush="Black" BorderThickness="1" Grid.Column="0" Grid.Row="2" Margin="5"/>
+        <Border BorderBrush="Black" BorderThickness="1" Grid.Column="0" Grid.Row="3" Margin="5"/>
+
+        <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" Margin="5">
+            <TextBlock Text="Выбор позиции" Height="23"/>
+            <ComboBox Name="selectedCoffee" SelectionChanged="selectedCoffee_SelectionChanged"/>
+            <Button Content="Молоко +1" Name="AddMilk" Click="AddMilk_Click"/>
+            <Button Content="Сахар +1" Name="AddSugar" Click="AddSugar_Click"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" Margin="5">
+            <TextBlock Text="Выбранная позиция"/>
+            <TextBlock x:Name="selectedPosition"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" Margin="5">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Деньги:" Height="23" Width="118" HorizontalAlignment="Left"/>
+                <TextBlock x:Name="money" Text="{Binding _money}" Height="23" Width="50" HorizontalAlignment="Left"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Сдача:"  Height="23" Width="118" HorizontalAlignment="Left"/>
+                <TextBlock x:Name="changeMoney" Height="23" Width="50" HorizontalAlignment="Left"/>
+            </StackPanel>
+
+            <ComboBox Width="120" Name="selectedPaymentType" HorizontalAlignment="Left"/>
+            <StackPanel Orientation="Horizontal">
+                <ComboBox Width="120" Name="denominationMoney"/>
+                <Button Content="Добавить денег" Name="AddMoney" Click="AddMoney_Click"/>
+            </StackPanel>
+        </StackPanel>
+
+        <TextBlock x:Name="description" Grid.Column="0" Grid.Row="3" Margin="5"/>
+        <Button Content="Тех панель" Name="AdminPanelB" Click="AdminPanelB_Click" Grid.Column="1" Grid.Row="0" Margin="0,0,0,74"/>
+        <Button Content="Загрузить данные" Name="LoadTestData" Grid.Column="1" Grid.Row="0" Margin="0,70,0,0" Click="LoadTestData_Click"/>
+        <Button Content="Заказать" Name="Success" Grid.Column="1" Grid.Row="3" Click="Success_Click" Margin="43,10,0,0" />
+
+    </Grid>
+</Window>
